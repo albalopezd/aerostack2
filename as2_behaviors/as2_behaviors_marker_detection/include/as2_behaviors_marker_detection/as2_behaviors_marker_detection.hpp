@@ -47,7 +47,7 @@
 #include "as2_core/names/topics.hpp"
 #include "as2_behavior/behavior_server.hpp"
 #include "as2_msgs/action/detect.hpp"
-#include "as2_behaviors_detection/as2_behaviors_detection_plugin_base.hpp"
+#include "as2_behaviors_marker_detection/as2_behaviors_marker_detection_plugin_base.hpp"
 #include "sensor_msgs/msg/compressed_image.hpp"
 #include "sensor_msgs/msg/camera_info.hpp"
 
@@ -59,8 +59,8 @@ namespace as2_behaviors_marker_detection
 class MarkerDetectBehavior : public as2_behavior::BehaviorServer<as2_msgs::action::Detect>
 {
 public:
-  explicit DetectBehavior(const rclcpp::NodeOptions & options = rclcpp::NodeOptions());
-  ~DetectBehavior() {}
+  explicit MarkerDetectBehavior(const rclcpp::NodeOptions & options = rclcpp::NodeOptions());
+  ~MarkerDetectBehavior() {}
 
   void image_callback(const sensor_msgs::msg::CompressedImage::SharedPtr image_msg);
   void camera_info_callback(const sensor_msgs::msg::CameraInfo::SharedPtr cam_info_msg);
@@ -79,8 +79,9 @@ protected:
 
 private:
   std::shared_ptr
-  <pluginlib::ClassLoader<as2_behaviors_detection_plugin_base::DetectBase>> detect_loader_;
-  std::shared_ptr<as2_behaviors_detection_plugin_base::DetectBase> detect_plugin_;
+  <pluginlib::ClassLoader<as2_behaviors_marker_detection_plugin_base::MarkerDetectBase>>
+  detect_loader_;
+  std::shared_ptr<as2_behaviors_marker_detection_plugin_base::MarkerDetectBase> detect_plugin_;
 
   rclcpp::Subscription<sensor_msgs::msg::CompressedImage>::SharedPtr image_sub_;
   rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr cam_info_sub_;
@@ -93,5 +94,5 @@ private:
   std::string plugin_name_;
 };
 
-}  // namespace as2_behaviors_detection
+}  // namespace as2_behaviors_marker_detection
 #endif  // AS2_BEHAVIORS_MARKER_DETECTION__AS2_BEHAVIORS_MARKER_DETECTION_HPP_
