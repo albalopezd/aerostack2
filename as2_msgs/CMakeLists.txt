@@ -20,6 +20,7 @@ set(PROJECT_DEPENDENCIES
   nav_msgs
   action_msgs
   sensor_msgs
+  yolo_inference_cpp
 )
 
 foreach(DEPENDENCY ${PROJECT_DEPENDENCIES})

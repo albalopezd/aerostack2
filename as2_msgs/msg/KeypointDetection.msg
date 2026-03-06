@@ -1,0 +1,5 @@
+string label
+int32 class_id
+float32 confidence
+yolo_inference_cpp/BoundingBox bounding_box
+yolo_inference_cpp/Keypoint[] keypoints
